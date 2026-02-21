@@ -8,6 +8,18 @@ class Game:
 
     def alive_players(self):
         return [p for p in self.players if p.alive]
+    
+    def public_state(self):
+        """
+        snapshoot of the game state for ai
+        """
+        return {
+            "round": self.round,
+            "phase": self.phase,
+            "alive_players": self.alive_players(),   # could be changed to solo id
+            "alive_ids": [p.id for p in self.alive_players()],
+            "dead_ids": [p.id for p in self.players if not p.alive],
+        }
 
     def run(self):
         while True:
